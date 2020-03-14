@@ -1,0 +1,9 @@
+name: DREArmoury
+version: 0.5
+author: Malfrador
+main: de.erethon.armoury.DREArmoury
+api-version: 1.13
+commands:
+  drearmoury:
+    usage: /drearmoury
+    permission: dre.armoury.reload

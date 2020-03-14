@@ -1,0 +1,42 @@
+debug: false
+armor:
+  leather:
+    dagger: 1.000
+    rapier: 1.000
+    katana: 1.000
+    knight: 1.000
+    long: 1.000
+    axe: 1.000
+    arrow: 1.000
+  linen:
+    dagger: 1.000
+    rapier: 1.000
+    katana: 1.000
+    knight: 1.000
+    long: 1.000
+    axe: 1.000
+    arrow: 1.000
+  chain:
+    dagger: 1.000
+    rapier: 1.000
+    katana: 1.000
+    knight: 1.000
+    long: 1.000
+    axe: 1.000
+    arrow: 1.000
+  scale:
+    dagger: 1.000
+    rapier: 1.000
+    katana: 1.000
+    knight: 1.000
+    long: 1.000
+    axe: 1.000
+    arrow: 1.000
+  plate:
+    dagger: 1.000
+    rapier: 1.000
+    katana: 1.000
+    knight: 1.000
+    long: 1.000
+    axe: 1.000
+    arrow: 1.000
