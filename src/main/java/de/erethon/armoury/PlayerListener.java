@@ -21,6 +21,7 @@ public class PlayerListener implements Listener {
     DamageCalculation dmgcalc = new DamageCalculation();
     DREArmoury main = DREArmoury.getInstance();
     Config cfg = main.getDREConfig();
+
     @EventHandler
     public void pvpHandler(EntityDamageByEntityEvent event) {
         final Entity damager = event.getDamager();
@@ -33,6 +34,9 @@ public class PlayerListener implements Listener {
         Player pVict = null;
         if ((damager instanceof Player || damager instanceof Projectile) && (damaged instanceof Player)) {
             pVict = (Player) damaged;
+            if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+                return;
+            }
 
             if ((event.getCause() == EntityDamageEvent.DamageCause.PROJECTILE)) {
                     Projectile projectile = (Projectile)event.getDamager();
@@ -54,13 +58,6 @@ public class PlayerListener implements Listener {
                 armorreduction = dmgcalc.calcDmg(weapon, armorHead) * dmgcalc.calcDmg(weapon, armorChest) * dmgcalc.calcDmg(weapon, armorLegs) *  dmgcalc.calcDmg(weapon, armorFeet);
                 finaldmg = dmg * armorreduction;
                 event.setDamage(finaldmg);
-                if (main.isDebug()) {
-                    pDmg.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GOLD + " " + round(finaldmg) + " DMG" + ChatColor.DARK_GRAY + " " + armorreduction + " - " + weapon + ")"));
-                    pVict.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GOLD + " " + round(finaldmg) + " DMG" + ChatColor.DARK_GRAY + " (" + armorreduction + " - " + weapon + ")"));
-                    pVict.sendMessage("ArmorType: " + armorHead + " / " + armorChest + " / " + armorLegs + " / " + armorFeet);
-                    pVict.sendMessage("Reduction: " + dmgcalc.calcDmg(weapon, armorHead) + " * " + dmgcalc.calcDmg(weapon, armorChest) + " * " + dmgcalc.calcDmg(weapon, armorLegs) + " * " + dmgcalc.calcDmg(weapon, armorFeet) + " = " + armorreduction);
-
-                }
 
             }
         }
