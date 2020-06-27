@@ -56,9 +56,6 @@ public class Config {
 
     public boolean debugMode;
 
-
-
-
     public void loadConfig(DREArmoury plugin) {
         FileConfiguration cfg = plugin.getConfig();
         leatherDagger = (float) cfg.getDouble("armor.leather.dagger");

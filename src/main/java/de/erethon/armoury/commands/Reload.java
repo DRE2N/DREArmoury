@@ -1,18 +1,12 @@
 package de.erethon.armoury.commands;
 
-import de.erethon.armoury.ArmorType;
 import de.erethon.armoury.DREArmoury;
-import de.erethon.armoury.DamageCalculation;
-import de.erethon.armoury.WeaponType;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class Reload implements CommandExecutor {
 
@@ -43,7 +37,7 @@ public class Reload implements CommandExecutor {
             weapon = StringUtils.capitalize(weapon);
             try {
                 main.getDREConfig().setValue(armor + weapon, value);
-                sender.sendMessage("Rüstung: " + armor.toString() + " Waffe: " + weapon.toString() + " Koeffizient: " + value);
+                sender.sendMessage("Rüstung: " + armor + " Waffe: " + weapon + " Koeffizient: " + value);
             } catch (NoSuchFieldException e) {
                 sender.sendMessage("Invalid argument!");
             } catch (IllegalAccessException e) {
@@ -56,7 +50,7 @@ public class Reload implements CommandExecutor {
             String weapon = args[2];
             weapon = StringUtils.capitalize(weapon);
             try {
-                sender.sendMessage("Rüstung: " + armor.toString() + " Waffe: " + weapon.toString() + " Koeffizient: " + main.getDREConfig().getValue(armor + weapon));
+                sender.sendMessage("Rüstung: " + armor + " Waffe: " + weapon + " Koeffizient: " + main.getDREConfig().getValue(armor + weapon));
             } catch (NoSuchFieldException e) {
                 sender.sendMessage("Invalid argument!");
             } catch (IllegalAccessException e) {

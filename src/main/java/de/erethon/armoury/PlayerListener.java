@@ -1,9 +1,5 @@
 package de.erethon.armoury;
 
-import de.erethon.armoury.config.Config;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -13,14 +9,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import static java.lang.Math.round;
-
 public class PlayerListener implements Listener {
     ArmorHandler armorHandler = new ArmorHandler();
     WeaponHandler weaponHandler = new WeaponHandler();
     DamageCalculation dmgcalc = new DamageCalculation();
-    DREArmoury main = DREArmoury.getInstance();
-    Config cfg = main.getDREConfig();
 
     @EventHandler
     public void pvpHandler(EntityDamageByEntityEvent event) {
@@ -29,9 +21,8 @@ public class PlayerListener implements Listener {
         double dmg = event.getDamage();
         double armorreduction;
         double finaldmg;
-        double armor;
         Player pDmg = null;
-        Player pVict = null;
+        Player pVict;
         if ((damager instanceof Player || damager instanceof Projectile) && (damaged instanceof Player)) {
             pVict = (Player) damaged;
             if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {

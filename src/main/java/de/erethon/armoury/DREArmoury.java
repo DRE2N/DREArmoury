@@ -3,7 +3,6 @@ import de.erethon.armoury.commands.Reload;
 import de.erethon.armoury.config.Config;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 public class DREArmoury extends JavaPlugin {
     public static DREArmoury plugin;
     Config cfg;
