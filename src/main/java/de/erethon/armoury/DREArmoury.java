@@ -13,13 +13,12 @@ public class DREArmoury extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         loadDREConfig();
         getLogger().info("Debug-Mode: " + cfg.isDebugMode());
-        plugin.getCommand("drearmoury").setExecutor(new Reload());
+        plugin.getCommand("axs").setExecutor(new Reload());
     }
     public void onDisable() {
-
+        getDREConfig().save(plugin);
     }
     public void loadDREConfig() {
-        plugin.saveDefaultConfig();
         cfg = new Config();
         cfg.loadConfig(this);
     }

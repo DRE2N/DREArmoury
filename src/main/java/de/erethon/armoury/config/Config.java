@@ -3,6 +3,8 @@ package de.erethon.armoury.config;
 import de.erethon.armoury.DREArmoury;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.lang.reflect.Field;
+
 import static org.bukkit.Bukkit.getLogger;
 
 public class Config {
@@ -66,7 +68,6 @@ public class Config {
         leatherLong = (float) cfg.getDouble("armor.leather.long");
         leatherAxe = (float) cfg.getDouble("armor.leather.axe");
         leatherArrow = (float) cfg.getDouble("armor.leather.arrow");
-        getLogger().info("Loaded:" + leatherDagger);
 
         linenDagger = (float) cfg.getDouble("armor.linen.dagger");
         linenRapier = (float) cfg.getDouble("armor.linen.rapier");
@@ -101,6 +102,54 @@ public class Config {
         plateArrow = (float) cfg.getDouble("armor.plate.arrow");
 
         debugMode = cfg.getBoolean("debug");
+
+    }
+
+    public void save(DREArmoury plugin) {
+        FileConfiguration cfg = plugin.getConfig();
+        cfg.set("armor.leather.dagger", leatherDagger);
+        cfg.set("armor.leather.rapier" , leatherRapier);
+        cfg.set("armor.leather.katana", leatherKatana);
+        cfg.set("armor.leather.knight", leatherKnight);
+        cfg.set("armor.leather.long", leatherLong);
+        cfg.set("armor.leather.axe", leatherAxe);
+        cfg.set("armor.leather.arrow", leatherArrow);
+
+        cfg.set("armor.linen.dagger", linenDagger);
+        cfg.set("armor.linen.rapier", linenRapier);
+        cfg.set("armor.linen.katana", linenKatana);
+        cfg.set("armor.linen.knight", linenKnight);
+        cfg.set("armor.linen.long", linenLong);
+        cfg.set("armor.linen.axe", linenAxe);
+        cfg.set("armor.linen.arrow", linenArrow);
+
+        cfg.set("armor.chain.dagger", chainDagger);
+        cfg.set("armor.chain.rapier", chainRapier);
+        cfg.set("armor.chain.katana", chainKatana);
+        cfg.set("armor.chain.knight", chainKnight);
+        cfg.set("armor.chain.long", chainLong);
+        cfg.set("armor.chain.axe", chainAxe);
+        cfg.set("armor.chain.arrow", chainArrow);
+
+        cfg.set("armor.scale.dagger", scaleDagger);
+        cfg.set("armor.scale.rapier", scaleRapier);
+        cfg.set("armor.scale.katana", scaleKatana);
+        cfg.set("armor.scale.knight", scaleKnight);
+        cfg.set("armor.scale.long", scaleLong);
+        cfg.set("armor.scale.axe", scaleAxe);
+        cfg.set("armor.scale.arrow", scaleArrow);
+
+        cfg.set("armor.plate.dagger", plateDagger);
+        cfg.set("armor.plate.rapier", plateRapier);
+        cfg.set("armor.plate.katana", plateKatana);
+        cfg.set("armor.plate.knight", plateKnight);
+        cfg.set("armor.plate.long", plateLong);
+        cfg.set("armor.plate.axe", plateAxe);
+        cfg.set("armor.plate.arrow", plateArrow);
+
+        plugin.saveConfig();
+        getLogger().info("Saved changes to config");
+
 
     }
 
@@ -144,4 +193,14 @@ public class Config {
     public float getPlateLong() {  return plateLong; }
     public float getPlateAxe() {   return plateAxe; }
     public float getPlateArrow() { return plateArrow; }
+
+    public void setValue (String var, float value) throws NoSuchFieldException, IllegalAccessException {
+        Field field = getClass().getDeclaredField(var);
+        field.setFloat(this, value);
+    }
+
+    public float getValue (String var) throws NoSuchFieldException, IllegalAccessException {
+        Field field = getClass().getDeclaredField(var);
+        return field.getFloat(this);
+    }
 }

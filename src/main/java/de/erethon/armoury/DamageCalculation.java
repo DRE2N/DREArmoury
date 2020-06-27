@@ -7,8 +7,6 @@ public class DamageCalculation {
         DREArmoury main = DREArmoury.getInstance();
         Config cfg = main.getDREConfig();
         switch (arm) {
-            case INVALID:
-                return 1;
             case LEATHER:
                 switch (wpn) {
                     case INVALID:
@@ -104,8 +102,9 @@ public class DamageCalculation {
                     case ARROW:
                         return cfg.getPlateArrow();
                 }
+            case INVALID:
             default:
-                return 0.2;
+                return 1;
         }
     }
 }
